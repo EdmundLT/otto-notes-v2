@@ -37,6 +37,6 @@
     "**/*.cjs",
     "**/*.js",
     ".next/types/**/*.ts"
-, "src/app/[lng]/layout.jsx", "src/app/[lng]/second-page/page.jsx", "src/app/[lng]/page.jsx", "src/components/Navbar.jsx", ".next/types/app/about/page.tsx", ".next/types/app/about/page.tsx"  ],
+, "src/app/[lng]/layout.jsx", "src/app/[lng]/second-page/page.jsx", "src/app/[lng]/page.jsx", "src/components/Navbar.jsx", ".next/types/app/about/page.tsx", ".next/types/app/about/page.tsx", "next.config.mjs", "next.config.mjs", "src/env.mjs"  ],
   "exclude": ["node_modules"]
 }
