@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import { BlogPost } from "types";
 
 const Page = () => {
-  const { locales, cat } = useParams();
+  const { locales, cat } : {locales: string, cat: string} = useParams();
   const [blogsCollection, setBlogsCollection] = useState<BlogPost[]>([]);
   let userLocale: string;
   locales === "zh" ? (userLocale = "zh-Hant-HK") : (userLocale = "en-US");

@@ -5,10 +5,10 @@ import {
   } from "@apollo/client";
   import { setContext } from "apollo-link-context";
   
-  const API_URL = "https://graphql.contentful.com/content/v1/spaces/b63rhgn1c3nd";
+
   
   const httpLink = createHttpLink({
-    uri: API_URL,
+    uri: "https://graphql.contentful.com/content/v1/spaces/b63rhgn1c3nd"
   });
   
   const authLink = setContext((_, { headers }) => {

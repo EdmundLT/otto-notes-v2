@@ -1,3 +1,5 @@
+import { Document } from "@contentful/rich-text-types";
+
 export type Props = {
   params: {
     slug: string;
@@ -16,7 +18,7 @@ type qa = {
 
 export type BlogPost = {
   title: string;
-  body: { json: Document | undefined };
+  body: { json: Document };
   slug: string;
   categories: string[];
   mainImage: {

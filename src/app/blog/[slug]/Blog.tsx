@@ -102,7 +102,7 @@ const Blog = ({ params }: Props) => {
           <header className="mx-auto max-w-screen-xl pt-10 text-center">
             <p className="text-gray-500">
               Published{" "}
-              {new Date(blog?.createdAt).toLocaleDateString("en-US", {
+              {new Date(blog?.createdAt!).toLocaleDateString("en-US", {
                 day: "numeric",
                 month: "short",
                 year: "numeric",
@@ -134,9 +134,13 @@ const Blog = ({ params }: Props) => {
             />
           </header>
   
+          {blog ? (
           <div className="mx-auto mt-5 max-w-screen-md space-y-12 px-4 py-5 text-lg tracking-wide text-gray-700">
-            {documentToReactComponents(blog?.body.json, RichTextoptions)}
+            {documentToReactComponents(blog.body.json, RichTextoptions)}
           </div>
+        ) : (
+          <div></div>
+        )}
         </article>
       </main>
     );

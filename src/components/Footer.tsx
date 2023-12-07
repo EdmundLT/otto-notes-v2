@@ -1,5 +1,5 @@
 function Footer() {
-  let year = new Date().getFullYear();
+  const year = new Date().getFullYear();
   return (
     <footer className="justify-center rounded-lg bg-white p-4 shadow dark:bg-gray-800 md:flex md:items-center md:justify-center md:p-6">
       <span className="text-sm text-gray-500 dark:text-gray-400 sm:text-center">

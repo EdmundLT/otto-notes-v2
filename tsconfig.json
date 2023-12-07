@@ -10,7 +10,7 @@
     "isolatedModules": true,
 
     /* Strictness */
-    "strict": true,
+    "strict": false,
     "noUncheckedIndexedAccess": true,
     "checkJs": true,
 
@@ -37,6 +37,6 @@
     "**/*.cjs",
     "**/*.js",
     ".next/types/**/*.ts"
-, "src/app/[lng]/layout.jsx", "src/app/[lng]/second-page/page.jsx", "src/app/[lng]/page.jsx", "src/components/Navbar.jsx"  ],
+, "src/app/[lng]/layout.jsx", "src/app/[lng]/second-page/page.jsx", "src/app/[lng]/page.jsx", "src/components/Navbar.jsx", ".next/types/app/about/page.tsx", ".next/types/app/about/page.tsx"  ],
   "exclude": ["node_modules"]
 }

@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 import { client } from "apollo-client";
 import React from "react";
-import { Props } from "types";
+import type { Props } from "types";
 import Blog from "./Blog";
 import { Metadata, ResolvingMetadata } from "next";
 import Script from "next/script";
