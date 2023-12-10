@@ -78,7 +78,7 @@ export default function Home({ params }: LocaleProps) {
                       return (
                         <p
                           key={category}
-                          className="mx-1 select-none rounded-3xl bg-purple-300 px-3 text-center font-semibold  shadow-lg"
+                          className="mx-1 select-none rounded-3xl bg-[#1FB2A5] text-white  px-3 text-center font-semibold  shadow-lg"
                         >
                           {category}
                         </p>

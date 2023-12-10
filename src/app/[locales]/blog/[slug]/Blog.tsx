@@ -5,24 +5,37 @@ import React, { useEffect, useState } from "react";
 import type { BlogPost, Props } from "types";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-
+const contentful = require('contentful')
 const Blog = ({ params }: Props) => {
   const [blog, setBlog] = useState<BlogPost>();
+  const [assetMap, setAssetMap] = useState(new Map());
   async function getBlog() {
     params.slug = decodeURIComponent(params.slug);
     await client
       .query({
         query: gql`
-          query ($preview: Boolean, $slug: String!, $locale: String) {
+          query ($preview: Boolean, $slug: String!, $locale: String, $limit: Int) {
             blogsCollection(
               preview: $preview
               where: { slug: $slug }
-              locale: $locale
+              locale: $locale,
+              limit: $limit
             ) {
               items {
                 title
                 body {
                   json
+                  links {
+                    assets {
+                      block {
+                        title
+                        url
+                        sys {
+                          id
+                        }
+                      }
+                    }
+                  }
                 }
                 slug
                 categories
@@ -39,9 +52,13 @@ const Blog = ({ params }: Props) => {
         variables: {
           slug: params.slug,
           locale: "zh-Hant-HK",
+          limit: 1
         },
       })
       .then((res) => {
+        for (const asset of res.data.blogsCollection.items[0].body.links.assets.block) {
+          assetMap.set(asset.sys.id, asset);
+        }
         console.log(res.data.blogsCollection.items[0]);
         setBlog(res.data.blogsCollection.items[0]);
       });
@@ -71,33 +88,44 @@ const Blog = ({ params }: Props) => {
     </a>
   );
 
-  const RichTextoptions = {
-    renderNode: {
-      [BLOCKS.HEADING_1]: (node: any, children: any) => (
-        <Heading1>{children}</Heading1>
-      ),
-      [BLOCKS.HEADING_2]: (node: any, children: any) => (
-        <Heading2>{children}</Heading2>
-      ),
-      [BLOCKS.HEADING_3]: (node: any, children: any) => (
-        <Heading3>{children}</Heading3>
-      ),
-      [BLOCKS.PARAGRAPH]: (node: any, children: any) => <Text>{children}</Text>,
-      [BLOCKS.LIST_ITEM]: (node: any, children: any) => (
-        <ListItem>{children}</ListItem>
-      ),
-      [INLINES.HYPERLINK]: (node: any, children: any) => (
-        <Link href={node.data.uri}>{children}</Link>
-      ),
-    },
+ const RichTextoptions = {
+  renderNode: {
+    [BLOCKS.HEADING_1]: (node: any, children: any) => (
+      <Heading1>{children}</Heading1>
+    ),
+    [BLOCKS.HEADING_2]: (node: any, children: any) => (
+      <Heading2>{children}</Heading2>
+    ),
+    [BLOCKS.HEADING_3]: (node: any, children: any) => (
+      <Heading3>{children}</Heading3>
+    ),
+    [BLOCKS.PARAGRAPH]: (node: any, children: any) => <Text>{children}</Text>,
+    [BLOCKS.LIST_ITEM]: (node: any, children: any) => (
+      <ListItem>{children}</ListItem>
+    ),
+    [INLINES.HYPERLINK]: (node: any, children: any) => (
+      <Link href={node.data.uri}>{children}</Link>
+    ),
+    [BLOCKS.EMBEDDED_ASSET]: (node, next) => {
+      // find the asset in the assetMap by ID
+      const assetId = node.data.target.sys.id
+      console.log(assetId)
+      const asset = assetMap.get(assetId)
 
-    renderText: (text: any) => text.replace("!", "?"),
-  };
+      // render the asset accordingly
+      return (
+        <img src={asset.url} alt="My image alt text" />
+      );
+    },
+  },
+
+  renderText: (text: any) => text.replace("!", "?"),
+};
 
   return (
     <main>
       <article>
-        <header className="mx-auto max-w-screen-xl pt-10 text-center">
+        <header className="mx-auto max-w-screen-xl pt-10 text-center px-2">
           <p className="text-gray-500">
             Published{" "}
             {new Date(blog?.createdAt!).toLocaleDateString("en-US", {

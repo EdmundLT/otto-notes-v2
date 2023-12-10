@@ -9,13 +9,15 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 const Blog = ({ params }: Props) => {
     const [blog, setBlog] = useState<BlogPost>();
+    const [assetMap, setAssetMap] = useState(new Map());
+
     async function getBlog() {
       params.slug = decodeURIComponent(params.slug);
       await client
         .query({
           query: gql`
-            query ($preview: Boolean, $slug: String!) {
-              blogsCollection(preview: $preview, where: { slug: $slug }) {
+          query ($preview: Boolean, $slug: String!, $limit: Int) {
+              blogsCollection(preview: $preview, where: { slug: $slug }, limit: $limit)  {
                 items {
                   questionAndAnswerCollection {
                     items {
@@ -26,6 +28,17 @@ const Blog = ({ params }: Props) => {
                   title
                   body {
                     json
+                    links {
+                      assets {
+                        block {
+                          title
+                          url
+                          sys {
+                            id
+                          }
+                        }
+                      }
+                    }
                   }
                   slug
                   categories
@@ -41,11 +54,17 @@ const Blog = ({ params }: Props) => {
           `,
           variables: {
             slug: params.slug,
+            limit: 1
           },
         })
         .then((res) => {
-          console.log(res.data.blogsCollection.items[0]);
+          for (const asset of res.data.blogsCollection.items[0].body.links.assets.block) {
+            assetMap.set(asset.sys.id, asset);
+          }
+          console.log(assetMap)
+          console.log(assetMap.get("282w16JUu4lhKaN6fgVoiK"));
           setBlog(res.data.blogsCollection.items[0]);
+
         });
     }
   
@@ -72,8 +91,9 @@ const Blog = ({ params }: Props) => {
         {children}
       </a>
     );
-  
     const RichTextoptions = {
+
+
       renderNode: {
         [BLOCKS.HEADING_1]: (node: any, children: any) => (
           <Heading1>{children}</Heading1>
@@ -91,15 +111,24 @@ const Blog = ({ params }: Props) => {
         [INLINES.HYPERLINK]: (node: any, children: any) => (
           <Link href={node.data.uri}>{children}</Link>
         ),
-      },
+        [BLOCKS.EMBEDDED_ASSET]: (node, next) => {
+          // find the asset in the assetMap by ID
+          const assetId = node.data.target.sys.id
+          console.log(assetId)
+          const asset = assetMap.get(assetId)
   
-      renderText: (text: any) => text.replace("!", "?"),
+          // render the asset accordingly
+          return (
+            <img src={asset.url} alt="My image alt text" />
+          );
+        },
+      },
     };
   
     return (
       <main>
         <article>
-          <header className="mx-auto max-w-screen-xl pt-10 text-center">
+          <header className="mx-auto max-w-screen-xl pt-10 text-center px-2">
             <p className="text-gray-500">
               Published{" "}
               {new Date(blog?.createdAt!).toLocaleDateString("en-US", {

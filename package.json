@@ -16,6 +16,7 @@
     "@t3-oss/env-nextjs": "^0.7.1",
     "accept-language": "^3.0.18",
     "apollo-link-context": "^1.0.20",
+    "contentful": "^10.6.14",
     "graphql": "^16.8.1",
     "i18next": "^23.7.7",
     "i18next-resources-to-backend": "^1.2.0",
