@@ -12,35 +12,35 @@ export default async function sitemap() {
       priority: 1,
     },
     {
-      url: "https://otto-notes.com/category/Life",
+      url: "https://otto-notes.com/category/生活",
       priority: 1,
     },
     {
-      url: "https://otto-notes.com/zh/category/Life",
+      url: "https://otto-notes.com/en/category/Life",
       priority: 1,
     },
     {
-      url: "https://otto-notes.com/category/Immigrant",
+      url: "https://otto-notes.comcategory/移民",
       priority: 1,
     },
     {
-      url: "https://otto-notes.com/zh/category/Immigrant",
+      url: "https://otto-notes.com/en/category/Immigrant",
       priority: 1,
     },
     {
-      url: "https://otto-notes.com/category/Study",
+      url: "https://otto-notes.com/category/讀書",
       priority: 1,
     },
     {
-      url: "https://otto-notes.com/zh/category/Study",
+      url: "https://otto-notes.com/en/category/Study",
       priority: 1,
     },
     {
-      url: "https://otto-notes.com/category/Working",
+      url: "https://otto-notes.com/category/工作",
       priority: 1,
     },
     {
-      url: "https://otto-notes.com/zh/category/Working",
+      url: "https://otto-notes.com/en/category/Working",
       priority: 1,
     },
   ];
@@ -49,24 +49,25 @@ export default async function sitemap() {
   await client
     .query({
       query: gql`
-        query Query($locale: String) {
-          blogsCollection {
-            items {
-              zhSlug: slug(locale: $locale)
-              slug
-            }
+      query Query($locale: String, $limit: Int) {
+        blogsCollection(limit: $limit) {
+          items {
+            zhSlug: slug(locale: $locale)
+            slug
           }
         }
+      }
       `,
       variables: {
         locale: "zh-Hant-HK",
+        limit: 100
       },
     })
     .then((res) => {
       zh = res.data.blogsCollection.items.map(
         ({ zhSlug }: { zhSlug: string }) => {
           return {
-            url: `https://otto-notes.com/zh/blog/${zhSlug}`,
+            url: `https://otto-notes.com/blog/${zhSlug}`,
             priority: 1,
           };
         },
@@ -74,7 +75,7 @@ export default async function sitemap() {
       console.log(zh);
       en = res.data.blogsCollection.items.map(({ slug }: { slug: string }) => {
         return {
-          url: `https://otto-notes.com/blog/${slug}`,
+          url: `https://otto-notes.com/en/blog/${slug}`,
           priority: 1,
         };
       });

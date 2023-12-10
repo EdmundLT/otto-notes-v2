@@ -1,18 +1,16 @@
 "use client";
 import { gql } from "@apollo/client";
 import { client } from "apollo-client";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LocaleProps, BlogPost } from "types";
 
 export default function Home({ params }: LocaleProps) {
   params.locales = decodeURIComponent(params.locales);
-  const router = useRouter();
   const [blogsCollection, setBlogsCollection] = useState<BlogPost[]>([]);
   let userLocale: string;
-  params.locales === "zh"
-    ? (userLocale = "zh-Hant-HK")
-    : (userLocale = "en-US");
+  params.locales === "en"
+    ? (userLocale = "en-US")
+    : (userLocale = "zh-Hant-HK");
 
   async function queryByLocales() {
     await client
@@ -59,7 +57,7 @@ export default function Home({ params }: LocaleProps) {
               key={blog.slug}
               className="mx-auto my-4 flex w-full flex-col overflow-hidden rounded-2xl border border-gray-300 bg-white text-gray-900 transition hover:shadow-lg"
             >
-              <a href={`/zh/blog/${blog.slug}`}>
+              <a href={`/en/blog/${blog.slug}`}>
                 <img
                   src={blog.mainImage.url}
                   className="h-56 w-full object-cover"

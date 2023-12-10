@@ -30,31 +30,32 @@ const Banner = () => {
       className="mb-10 flex flex-col justify-between px-10 py-5 font-bold text-black
    lg:flex-row lg:space-x-5"
     >
-      <a href={locales === "zh" ? "/zh" : "/"} className="select-none">
+      <a href={locales === "en" ? "/en" : "/"} className="select-none">
         <h1 className="text-5xl font-light">Otto Notes</h1>
-        {locales === "zh" ? (
-          <h2 className="mt-5 pt-2 md:mt-0">加拿大生活大小事</h2>
+        {locales === "en" ? (
+         <h2 className="mt-5 pt-2 md:mt-0">Life in Canada</h2>
         ) : (
-          <h2 className="mt-5 pt-2 md:mt-0">Life in Canada</h2>
+          <h2 className="mt-5 pt-2 md:mt-0">加拿大生活大小事</h2>
+          
         )}
       </a>
       <div className="flex space-x-4 pt-4">
         {categories.map((cat: category) => {
-          if (locales === "zh") {
+          if (locales === "en") {
             return (
               <div key={cat.slug}>
-                <Tag category={cat.title} slug={cat.title} locale="zh" />
+                <Tag category={cat.slug} slug={cat.slug} locale="en" />
               </div>
             );
           } else {
             return (
               <div key={cat.slug}>
-                <Tag category={cat.slug} slug={cat.slug} />
+                <Tag category={cat.title} slug={cat.title} />
               </div>
             );
           }
         })}
-        {locales === "zh" ? <a href="/" className="pl-1 select-none  hover:text-[#1FB2A5]">EN</a> : <a href="/zh" className="pl-1 select-none  hover:text-[#1FB2A5]">中文</a>}
+        {locales === "en" ? <a href="/" className="pl-1 select-none  hover:text-[#1FB2A5]">中文</a> : <a href="/en" className="pl-1 select-none  hover:text-[#1FB2A5]">EN</a>}
       </div>
     </div>
   );

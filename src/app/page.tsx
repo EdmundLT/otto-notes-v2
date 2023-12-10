@@ -8,9 +8,9 @@ export default function Home({ params }: LocaleProps) {
   params.locales = decodeURIComponent(params.locales);
   const [blogsCollection, setBlogsCollection] = useState<BlogPost[]>([]);
   let userLocale: string;
-  params.locales === "zh"
-    ? (userLocale = "zh-Hant-HK")
-    : (userLocale = "en-US");
+  params.locales === "en"
+    ? (userLocale = "en-US")
+    : (userLocale = "zh-Hant-HK");
 
   function queryByLocales() {
     client

@@ -6,12 +6,12 @@ import React, { useEffect, useState } from "react";
 import { BlogPost } from "types";
 
 const Page = () => {
-  const { locales, cat } = useParams();
+  const { locales, cat }:{locales: string, cat: string}  = useParams();
   const [blogsCollection, setBlogsCollection] = useState<BlogPost[]>([]);
   let userLocale: string;
-  locales === "zh"
-    ? (userLocale = "zh-Hant-HK")
-    : (userLocale = "en-US");
+  locales === "en"
+    ? (userLocale = "en-US")
+    : (userLocale = "zh-Hant-HK");
 
   function queryByLocalesAndCategory() {
     client
@@ -34,7 +34,7 @@ const Page = () => {
         `,
         variables: {
           "where": {
-            "categories_contains_some": cat
+            "categories_contains_some": decodeURIComponent(cat)
           },
           "locale": userLocale,
         },
@@ -82,7 +82,7 @@ const Page = () => {
                       return (
                         <p
                           key={category}
-                          className="mx-1 select-none rounded-3xl bg-purple-300 px-3 text-center font-semibold  shadow-lg"
+                          className="mx-1 select-none rounded-3xl bg-[#1FB2A5] px-3 text-center font-semibold  shadow-lg text-white"
                         >
                           {category}
                         </p>

@@ -1,23 +1,18 @@
 import { gql } from "@apollo/client";
 import { client } from "apollo-client";
 import React from "react";
-import type { Props } from "types";
+import { Props } from "types";
 import Blog from "./Blog";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 import Script from "next/script";
 import { getMainEntityFromCollection } from "util/JsonLdMainEntity";
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  params.slug = decodeURIComponent(params.slug);
+
   const blogMetadata = await client
     .query({
       query: gql`
-        query ($preview: Boolean, $slug: String!, $locale: String) {
-          blogsCollection(
-            preview: $preview
-            where: { slug: $slug }
-            locale: $locale
-          ) {
+        query ($preview: Boolean, $slug: String!) {
+          blogsCollection(preview: $preview, where: { slug: $slug }) {
             items {
               questionAndAnswerCollection {
                 items {
@@ -34,7 +29,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `,
       variables: {
         slug: params.slug,
-        locale: "zh-Hant-HK",
       },
     })
     .then((res) => res.data.blogsCollection.items[0]);
@@ -46,16 +40,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const BlogPage = async ({ params }: Props) => {
-  params.slug = decodeURIComponent(params.slug);
   const blogQuestionAndAnswer = await client
     .query({
       query: gql`
-        query ($preview: Boolean, $slug: String!, $locale: String) {
-          blogsCollection(
-            preview: $preview
-            where: { slug: $slug }
-            locale: $locale
-          ) {
+        query ($preview: Boolean, $slug: String!) {
+          blogsCollection(preview: $preview, where: { slug: $slug }) {
             items {
               questionAndAnswerCollection {
                 items {
@@ -69,18 +58,19 @@ const BlogPage = async ({ params }: Props) => {
       `,
       variables: {
         slug: params.slug,
-        locale: "zh-Hant-HK",
       },
     })
     .then(
-      (res) => res.data.blogsCollection.items[0].questionAndAnswerCollection,
+      (res) =>
+        res.data.blogsCollection.items[0].questionAndAnswerCollection,
     );
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: getMainEntityFromCollection(blogQuestionAndAnswer),
+    mainEntity: getMainEntityFromCollection(blogQuestionAndAnswer)
   };
+
   return (
     <section>
       <Script
