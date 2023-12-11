@@ -20,7 +20,7 @@ export default async function sitemap() {
       priority: 1,
     },
     {
-      url: "https://otto-notes.comcategory/移民",
+      url: "https://otto-notes.com/category/移民",
       priority: 1,
     },
     {
