@@ -7,7 +7,7 @@ const BlogList = ({ blogList }: any) => {
       <div className="divider">Blog</div>
       <div className="grid grid-cols-1 gap-10 gap-y-16 px-10 md:grid-cols-2">
         {blogList.map((blog: any) => {
-          <a href={"/blog/" + blog.slug} key={blog.slug}>
+          <a href={"/post/" + blog.slug} key={blog.slug}>
             <div className="group flex cursor-pointer flex-col">
               <div className="relative h-80 w-full drop-shadow-xl transition-transform duration-200 ease-out group-hover:scale-105">
                 <div className="flex flex-col items-center gap-y-2 md:flex-row md:gap-x-2">

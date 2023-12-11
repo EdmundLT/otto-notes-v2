@@ -67,7 +67,7 @@ export default async function sitemap() {
       zh = res.data.blogsCollection.items.map(
         ({ zhSlug }: { zhSlug: string }) => {
           return {
-            url: `https://otto-notes.com/blog/${zhSlug}`,
+            url: `https://otto-notes.com/post/${zhSlug}`,
             priority: 1,
           };
         },
@@ -75,7 +75,7 @@ export default async function sitemap() {
       console.log(zh);
       en = res.data.blogsCollection.items.map(({ slug }: { slug: string }) => {
         return {
-          url: `https://otto-notes.com/en/blog/${slug}`,
+          url: `https://otto-notes.com/en/post/${slug}`,
           priority: 1,
         };
       });

@@ -67,7 +67,7 @@ const Page = () => {
               key={blog.slug}
               className="mx-auto my-4 flex w-full flex-col overflow-hidden rounded-2xl border border-gray-300 bg-white text-gray-900 transition hover:shadow-lg"
             >
-              <a href={`/zh/blog/${blog.slug}`}>
+              <a href={`/en/post/${blog.slug}`}>
                 <img
                   src={blog.mainImage.url}
                   className="h-56 w-full object-cover"
