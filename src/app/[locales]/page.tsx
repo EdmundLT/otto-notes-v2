@@ -44,27 +44,12 @@ export default function Home({ params }: LocaleProps) {
   useEffect(() => {
     queryByLocales();
   }, []);
-  const AdComponent = () => (
-    <ins
-      className="adsbygoogle"
-      style={{ display: 'block' }}
-      data-ad-client="ca-pub-2632815382162562"
-      data-ad-slot="2371262216"
-      data-ad-format="auto"
-      data-full-width-responsive="true"
-    />
-  );
+ 
   return (
     <>
       <h1 className="mb-12 text-center font-sans text-3xl font-semibold">
         Our Blog
       </h1>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2632815382162562"
-     crossOrigin="anonymous"></script>
-<AdComponent />
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
       <div className="mx-auto grid max-w-screen-lg justify-center px-4 sm:grid-cols-2 sm:gap-4 sm:px-8 md:grid-cols-3">
         {blogsCollection.map((blog: BlogPost) => {
           return (

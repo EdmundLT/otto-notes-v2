@@ -1,10 +1,9 @@
 import Banner from "@/components/Banner";
-import { Inter } from "next/font/google";
 import "../../styles/globals.css";
 import Script from "next/script";
 import Footer from "@/components/Footer";
 import { Metadata } from "next";
-
+import { GoogleAdSense } from "nextjs-google-adsense";
 const defaultTitle: any = "Otto Notes｜加拿大移民生活｜多倫多工作";
 export const metadata: Metadata = {
   title: defaultTitle,
@@ -19,11 +18,6 @@ export default function RootLayout({
   return (
     <html lang="zh-Hant">
       <head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2632815382162562"
-          crossOrigin="anonymous"
-        ></script>
         <Script
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -34,12 +28,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-NF3RTWK');`,
           }}
         ></Script>
-        <Script
+        {/* <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2632815382162562"
           strategy="lazyOnload"
           crossOrigin="anonymous"
-        />
+        /> */}
+        <GoogleAdSense publisherId="pub-2632815382162562" />
       </head>
       <body className="mx-auto max-w-full bg-white py-4">
         <noscript
