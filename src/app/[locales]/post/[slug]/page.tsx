@@ -76,7 +76,7 @@ const BlogPage = async ({ params }: Props) => {
          <Script
    id="Adsense-id"
    data-ad-client="ca-pub-2632815382162562"
-   async={true}
+   async
    strategy="beforeInteractive"
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
 />

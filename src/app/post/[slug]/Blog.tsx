@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import type { BlogPost, Props } from "types";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import Script from "next/script";
 const contentful = require('contentful')
 const Blog = ({ params }: Props) => {
   const [blog, setBlog] = useState<BlogPost>();
@@ -127,6 +128,13 @@ const Blog = ({ params }: Props) => {
     <main>
       <article>
         <header className="mx-auto max-w-screen-xl pt-10 text-center px-2">
+        <Script
+   id="Adsense-id"
+   data-ad-client="ca-pub-2632815382162562"
+   async
+   strategy="beforeInteractive"
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+/>
           <p className="text-gray-500">
             Published{" "}
             {new Date(blog?.createdAt!).toLocaleDateString("en-US", {
