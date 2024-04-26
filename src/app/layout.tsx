@@ -4,7 +4,10 @@ import Script from "next/script";
 import Footer from "@/components/Footer";
 import { Metadata } from "next";
 import { GoogleAdSense } from "nextjs-google-adsense";
-const defaultTitle: any = "Otto Notes｜加拿大移民生活｜多倫多工作";
+
+
+
+const defaultTitle: string = "Otto Notes｜加拿大移民生活｜多倫多工作";
 export const metadata: Metadata = {
   title: defaultTitle,
   description:

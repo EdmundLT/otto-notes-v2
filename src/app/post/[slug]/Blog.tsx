@@ -7,9 +7,11 @@ import type { BlogPost, Props } from "types";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Script from "next/script";
+import { AccordionDemo } from "@/components/BlogComponent/QandA";
 const contentful = require('contentful')
 const Blog = ({ params }: Props) => {
   const [blog, setBlog] = useState<BlogPost>();
+  const [blogQAndA, setBlogQAndA] = useState()
   const [assetMap, setAssetMap] = useState(new Map());
   async function getBlog() {
     params.slug = decodeURIComponent(params.slug);
@@ -47,6 +49,12 @@ const Blog = ({ params }: Props) => {
                 }
                 description
                 createdAt
+                questionAndAnswerCollection {
+                  items {
+                    question
+                    answer
+                  }
+                }
               }
             }
           }
@@ -63,6 +71,8 @@ const Blog = ({ params }: Props) => {
         }
         console.log(res.data.blogsCollection.items[0]);
         setBlog(res.data.blogsCollection.items[0]);
+        console.log(res.data.blogsCollection.items[0].questionAndAnswerCollection.items)
+        setBlogQAndA(res.data.blogsCollection.items[0].questionAndAnswerCollection.items)
       });
   }
 
@@ -165,10 +175,14 @@ const Blog = ({ params }: Props) => {
         {blog ? (
           <div className="mx-auto mt-5 max-w-screen-md space-y-12 px-4 py-5 text-lg tracking-wide text-gray-700">
             {documentToReactComponents(blog.body.json, RichTextoptions)}
+            <AccordionDemo 
+            qAndAItems={blogQAndA}
+            />
           </div>
         ) : (
           <div></div>
         )}
+      
       </article>
     </main>
   );

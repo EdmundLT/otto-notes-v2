@@ -24,13 +24,10 @@ const about = () => {
                 我們的故事
               </h1>
               <p className="text-base font-normal leading-6 text-gray-600 dark:text-black">
-                我們是一對情侶，在 2021
-                年離開香港移民到加拿大，目前在多倫多生活。男生目前是加拿大某一間銀行的軟體工程師，女生則是廣告公司的數據分析師。
+                我們是一對香港情侶，在 2021
+                年離開香港移民到加拿大，目前在多倫多生活。
               </p>
-              <p className="text-base font-normal leading-6 text-gray-600 dark:text-black">
-                至於這個 Blog 的名字為什麼是 Otto
-                呢？是因為我們養的小貓咪就叫這個名字 ：）
-              </p>
+              
             </div>
           </div>
         </div>

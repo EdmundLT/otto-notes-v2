@@ -6,6 +6,10 @@ import { AiOutlineGlobal } from "react-icons/ai";
 import Tag from "./Tag";
 const Banner = () => {
   const locales = useParams().locales;
+  const slug = useParams().slug;
+
+  // const switchLangPath = slug ? `/post/${slug}` : ""
+  const switchLangPath = ""
   const categories: category[] = [
     {
       title: "移民",
@@ -24,7 +28,6 @@ const Banner = () => {
       slug: "Study",
     },
   ];
-
   return (
     <div
       className="mb-10 flex flex-col justify-between px-10 py-5 font-bold text-black
@@ -55,7 +58,11 @@ const Banner = () => {
             );
           }
         })}
-        {locales === "en" ? <a href="/" className="pl-1 select-none  hover:text-[#1FB2A5]">中文</a> : <a href="/en" className="pl-1 select-none  hover:text-[#1FB2A5]">EN</a>}
+        {locales === "en" ? 
+        
+        <a href="/" className="pl-1 select-none  hover:text-[#1FB2A5]">中文</a> 
+        :
+        <a href="/en" className="pl-1 select-none  hover:text-[#1FB2A5]">EN</a>}
       </div>
     </div>
   );
