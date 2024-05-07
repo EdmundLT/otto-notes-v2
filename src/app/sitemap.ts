@@ -4,43 +4,7 @@ import { client } from "apollo-client";
 export default async function sitemap() {
   const urls = [
     {
-      url: "https://otto-notes.com",
-      priority: 1,
-    },
-    {
-      url: "https://otto-notes.com/zh",
-      priority: 1,
-    },
-    {
-      url: "https://otto-notes.com/category/生活",
-      priority: 1,
-    },
-    {
-      url: "https://otto-notes.com/en/category/Life",
-      priority: 1,
-    },
-    {
-      url: "https://otto-notes.com/category/移民",
-      priority: 1,
-    },
-    {
-      url: "https://otto-notes.com/en/category/Immigrant",
-      priority: 1,
-    },
-    {
-      url: "https://otto-notes.com/category/讀書",
-      priority: 1,
-    },
-    {
-      url: "https://otto-notes.com/en/category/Study",
-      priority: 1,
-    },
-    {
-      url: "https://otto-notes.com/category/工作",
-      priority: 1,
-    },
-    {
-      url: "https://otto-notes.com/en/category/Working",
+      url: "https://Halfwaynotes.com",
       priority: 1,
     },
   ];
@@ -67,7 +31,7 @@ export default async function sitemap() {
       zh = res.data.blogsCollection.items.map(
         ({ zhSlug }: { zhSlug: string }) => {
           return {
-            url: `https://otto-notes.com/post/${zhSlug}`,
+            url: `https://Halfwaynotes.com/post/${zhSlug}`,
             priority: 1,
           };
         },
@@ -75,7 +39,7 @@ export default async function sitemap() {
       console.log(zh);
       en = res.data.blogsCollection.items.map(({ slug }: { slug: string }) => {
         return {
-          url: `https://otto-notes.com/en/post/${slug}`,
+          url: `https://Halfwaynotes.com/en/post/${slug}`,
           priority: 1,
         };
       });

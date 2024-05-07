@@ -8,14 +8,14 @@ import {
 
   
   const httpLink = createHttpLink({
-    uri: "https://graphql.contentful.com/content/v1/spaces/b63rhgn1c3nd"
+    uri: "https://graphql.contentful.com/content/v1/spaces/ley3vzg83vzm"
   });
   
   const authLink = setContext((_, { headers }) => {
     return {
       headers: {
         ...headers,
-        authorization: `Bearer NrgEyU652bfwc30oBBJfD_WvM6rDpQH6_ZRqkqJd-V0`,
+        authorization: `Bearer VbhrX2GniTt22CdGKYHfyimG7Wy6YzZ7bzynLFi8xXE`,
       },
     };
   });

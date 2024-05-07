@@ -4,14 +4,14 @@ import Script from "next/script";
 import Footer from "@/components/Footer";
 import { Metadata } from "next";
 import { GoogleAdSense } from "nextjs-google-adsense";
+import { metadataDescription, metadataTitle } from "meta";
 
 
 
-const defaultTitle: string = "Otto Notes｜加拿大移民生活｜多倫多工作";
 export const metadata: Metadata = {
-  title: defaultTitle,
-  description:
-    "軟體工程師 x 數據分析師｜香港情侶加拿大移民生活分享，多倫多留學讀書、工作心得。",
+  title: metadataTitle,
+  description:metadataDescription,
+   
 };
 export default function RootLayout({
   children,
@@ -31,12 +31,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-NF3RTWK');`,
           }}
         ></Script>
-        {/* <Script
+        <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2632815382162562"
           strategy="lazyOnload"
           crossOrigin="anonymous"
-        /> */}
+        />
+        
         <GoogleAdSense publisherId="pub-2632815382162562" />
       </head>
       <body className="mx-auto max-w-full bg-white py-4">

@@ -11,8 +11,8 @@ const about = () => {
           <section className="p-10">
             <p className="py-2 font-semibold">Last updated: 2023-02-28</p>
             <p className="py-2">
-              [otto-notes.com] ("us", "we", or "our") operates the
-              [otto-notes.com] website (the "Service").
+              [Halfwaynotes.com] ("us", "we", or "our") operates the
+              [Halfwaynotes.com] website (the "Service").
             </p>
             <p className="py-2">
               This page informs you of our policies regarding the collection,
@@ -25,7 +25,7 @@ const about = () => {
               accordance with this policy. Unless otherwise defined in this
               Privacy Policy, terms used in this Privacy Policy have the same
               meanings as in our Terms and Conditions, accessible from
-              [otto-notes.com].
+              [Halfwaynotes.com].
             </p>
             <h3 className="font-semibold">Information Collection and Use</h3>
             <p className="py-2">
@@ -83,7 +83,7 @@ const about = () => {
             </li>
             <p className="py-2 font-semibold">Use of Data</p>
             <p className="py-2">
-              [Otto Notes] uses the collected data for various purposes:
+              [Halfway Notes] uses the collected data for various purposes:
             </p>
 
             <li>To provide and maintain the Service</li>
@@ -116,7 +116,7 @@ const about = () => {
               such information represents your agreement to that transfer.
             </p>
             <p className="py-2">
-              [Otto Notes] will take all steps reasonably necessary to ensure
+              [Halfway Notes] will take all steps reasonably necessary to ensure
               that your data is treated securely and in accordance with this
               Privacy Policy and no transfer of your Personal Data will take
               place to an organization or a country unless there are adequate
@@ -125,7 +125,7 @@ const about = () => {
             </p>
             <p className="py-2 font-semibold">Disclosure Of Data</p>
             <p className="py-2">
-              [Otto Notes] may disclose your Personal Data in the good faith
+              [Halfway Notes] may disclose your Personal Data in the good faith
               belief that such action is necessary to:
             </p>
 
@@ -240,7 +240,7 @@ const about = () => {
               <li>By email: ottonotes0905@gmail.com</li>
               <li>
                 By visiting this page on our website:
-                https://otto-notes.com/contact
+                https://Halfwaynotes.com/contact
               </li>
             </ul>
           </section>

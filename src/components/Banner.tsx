@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import { category } from "types";
 import { AiOutlineGlobal } from "react-icons/ai";
 import Tag from "./Tag";
+import { descriptionEN, descriptionZH, title } from "meta";
 const Banner = () => {
   const locales = useParams().locales;
   const slug = useParams().slug;
@@ -34,16 +35,16 @@ const Banner = () => {
    lg:flex-row lg:space-x-5"
     >
       <a href={locales === "en" ? "/en" : "/"} className="select-none">
-        <h1 className="text-5xl font-light">Otto Notes</h1>
+        <h1 className="text-5xl font-light">{title}</h1>
         {locales === "en" ? (
-         <h2 className="mt-5 pt-2 md:mt-0">Life in Canada</h2>
+         <h2 className="mt-5 pt-2 md:mt-0">{descriptionEN}</h2>
         ) : (
-          <h2 className="mt-5 pt-2 md:mt-0">加拿大生活大小事</h2>
+          <h2 className="mt-5 pt-2 md:mt-0">{descriptionZH}</h2>
           
         )}
       </a>
       <div className="flex space-x-4 pt-4">
-        {categories.map((cat: category) => {
+        {/* {categories.map((cat: category) => {
           if (locales === "en") {
             return (
               <div key={cat.slug}>
@@ -57,7 +58,7 @@ const Banner = () => {
               </div>
             );
           }
-        })}
+        })} */}
         {locales === "en" ? 
         
         <a href="/" className="pl-1 select-none  hover:text-[#1FB2A5]">中文</a> 
