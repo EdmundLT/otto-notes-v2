@@ -2,6 +2,7 @@
 import React from "react";
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 const BlogList = ({ blogList }: any) => {
+
   return (
     <>
       <div className="divider">Blog</div>
@@ -38,7 +39,7 @@ const BlogList = ({ blogList }: any) => {
                 >
                   <div>
                     <p className="font-ntsc w-full text-lg font-bold">
-                      {blog.title}
+                      {blog.title} + {blog.mainImage}
                     </p>
 
                     {/* <p>
