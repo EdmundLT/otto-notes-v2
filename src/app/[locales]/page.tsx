@@ -61,7 +61,7 @@ export default function Home({ params }: LocaleProps) {
                 <img
                   src={blog.mainImage.url}
                   className="h-56 w-full object-cover"
-                  alt={blog.mainImage.title}
+                  alt={blog.title}
                 />
                 <div className="flex-auto px-3 py-5">
                   <div className="flex justify-start">

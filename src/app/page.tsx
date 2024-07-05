@@ -58,9 +58,9 @@ export default function Home({ params }: LocaleProps) {
             >
               <a href={`/post/${blog.slug}`}>
                 <img
-                  src={blog.mainImage.url}
                   className="h-56 w-full object-cover"
-                  alt={blog.mainImage.title}
+                  src={blog.mainImage.url}
+                  alt={blog.title}
                 />
                 <div className="flex-auto px-3 py-5">
                   <div className="flex justify-start">
@@ -76,8 +76,9 @@ export default function Home({ params }: LocaleProps) {
                     })}
                   </div>
                   <h3 className="mb-3 mt-4 text-xl font-semibold xl:text-2xl">
-                    {blog.title}
+                    {blog.title} 
                   </h3>
+                  {blog.mainImage.title}
                   <p className="mb-4 text-base font-light">
                     {blog.description.substring(0, 100)}...
                   </p>
