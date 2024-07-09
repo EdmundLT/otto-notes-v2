@@ -7,6 +7,7 @@ import Tag from "./Tag";
 import { client } from "apollo-client";
 import { gql } from "@apollo/client";
 import { createSlugPairs, findOtherLocaleSlug } from "util/slug";
+import Link from "next/link";
 
 const Banner = () => {
   const { locales, slug } = useParams();
@@ -16,7 +17,8 @@ const Banner = () => {
   const [otherLocaleSlug, setOtherLocaleSlug] = useState<string>("/");
 
   useEffect(() => {
-    
+    const newLocale = locales === "en" ? "en" : "zh-Hant-HK";    
+    setCurrentLocale(newLocale);
     fetchOtherLocaleSlug();
   }, [locales, slug]);
 
@@ -105,6 +107,13 @@ const Banner = () => {
         )}
       </a>
       <div className="flex space-x-4 pt-4">
+        {currentLocale === "en" ? <Link href={"/contact"} className="pl-1 select-none text-[#1FB2A5] hover:text-black">
+        Contact Us
+        </Link> : <Link href={"/contact"} className="pl-1 select-none text-[#1FB2A5] hover:text-black">
+        聯絡我們
+        </Link>}
+        
+      
         {categories.map((cat: category) => {
           if (currentLocale === "en") {
             return (
