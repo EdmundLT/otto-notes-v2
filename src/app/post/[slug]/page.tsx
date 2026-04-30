@@ -4,9 +4,10 @@ import { client } from "apollo-client";
 import React from "react";
 import type { Props } from "types";
 import Blog from "./Blog";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 import Script from "next/script";
 import { getMainEntityFromCollection } from "util/JsonLdMainEntity";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   params.slug = decodeURIComponent(params.slug);
@@ -37,8 +38,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         slug: params.slug,
         locale: "zh-Hant-HK",
       },
+      fetchPolicy: "network-only",
     })
     .then((res) => res.data.blogsCollection.items[0]);
+
+  if (!blogMetadata) return {};
 
   return {
     title: blogMetadata.title,
@@ -48,7 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const BlogPage = async ({ params }: Props) => {
   params.slug = decodeURIComponent(params.slug);
-  const blogQuestionAndAnswer = await client
+  const blog = await client
     .query({
       query: gql`
         query ($preview: Boolean, $slug: String!, $locale: String) {
@@ -72,10 +76,13 @@ const BlogPage = async ({ params }: Props) => {
         slug: params.slug,
         locale: "zh-Hant-HK",
       },
+      fetchPolicy: "network-only",
     })
-    .then(
-      (res) => res.data.blogsCollection.items[0].questionAndAnswerCollection,
-    );
+    .then((res) => res.data.blogsCollection.items[0]);
+
+  if (!blog) notFound();
+
+  const blogQuestionAndAnswer = blog.questionAndAnswerCollection;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -84,7 +91,6 @@ const BlogPage = async ({ params }: Props) => {
   };
   return (
     <section>
-
       <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

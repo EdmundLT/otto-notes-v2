@@ -6,8 +6,9 @@ import Blog from "./Blog";
 import { Metadata } from "next";
 import Script from "next/script";
 import { getMainEntityFromCollection } from "util/JsonLdMainEntity";
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+import { notFound } from "next/navigation";
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const blogMetadata = await client
     .query({
       query: gql`
@@ -30,8 +31,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       variables: {
         slug: params.slug,
       },
+      fetchPolicy: "network-only",
     })
     .then((res) => res.data.blogsCollection.items[0]);
+
+  if (!blogMetadata) return {};
 
   return {
     title: blogMetadata.title,
@@ -40,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const BlogPage = async ({ params }: Props) => {
-  const blogQuestionAndAnswer = await client
+  const blog = await client
     .query({
       query: gql`
         query ($preview: Boolean, $slug: String!) {
@@ -59,21 +63,22 @@ const BlogPage = async ({ params }: Props) => {
       variables: {
         slug: params.slug,
       },
+      fetchPolicy: "network-only",
     })
-    .then(
-      (res) =>
-        res.data.blogsCollection.items[0].questionAndAnswerCollection,
-    );
+    .then((res) => res.data.blogsCollection.items[0]);
+
+  if (!blog) notFound();
+
+  const blogQuestionAndAnswer = blog.questionAndAnswerCollection;
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: getMainEntityFromCollection(blogQuestionAndAnswer)
+    mainEntity: getMainEntityFromCollection(blogQuestionAndAnswer),
   };
 
   return (
     <section>
-      
       <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
