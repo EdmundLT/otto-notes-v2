@@ -1,27 +1,24 @@
 import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-  } from "@/components/ui/accordion"
-  
-  export function AccordionDemo({qAndAItems}) {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
-    return (
-      <Accordion type="single" collapsible className="w-full">
+type QandAItem = {
+  question: string;
+  answer: string;
+};
 
-        {qAndAItems.map((item, idx)=> {
-            return (
-        <AccordionItem value={`${item.__typename}-${idx}`} key={`${item.__typename}-${idx}`}>
+export function AccordionDemo({ qAndAItems }: { qAndAItems: QandAItem[] }) {
+  return (
+    <Accordion type="single" collapsible className="w-full">
+      {qAndAItems.map((item, idx) => (
+        <AccordionItem value={`faq-${idx}`} key={item.question}>
           <AccordionTrigger>{item.question}</AccordionTrigger>
-          <AccordionContent>
-            {item.answer}
-          </AccordionContent>
+          <AccordionContent>{item.answer}</AccordionContent>
         </AccordionItem>
-
-            )
-        })}
-      </Accordion>
-    )
-  }
-  
+      ))}
+    </Accordion>
+  );
+}
