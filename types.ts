@@ -16,18 +16,37 @@ type qa = {
   answer: string;
 };
 
+export type ContentfulAsset = {
+  sys: { id: string };
+  title: string;
+  description?: string;
+  url: string;
+  width?: number;
+  height?: number;
+};
+
 export type BlogPost = {
   title: string;
-  body: { json: Document };
+  body: {
+    json: Document;
+    links: { assets: { block: ContentfulAsset[] } };
+  };
   slug: string;
+  enSlug: string;
+  zhSlug: string;
   categories: string[];
   mainImage: {
     url: string;
     title: string;
+    width?: number;
+    height?: number;
   };
   description: string;
   createdAt: string;
   qa: qa[];
+  questionAndAnswerCollection: {
+    items: qa[];
+  };
 };
 
 export type QuestionAndAnswer = {

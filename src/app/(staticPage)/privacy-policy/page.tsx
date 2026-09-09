@@ -1,14 +1,19 @@
+import { Metadata } from "next";
 import React from "react";
 
-import "styles/globals.css";
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "Read the Otto Notes privacy policy.",
+  alternates: { canonical: "/privacy-policy" },
+};
 
 const about = () => {
   return (
     <div className="mx-auto max-w-full bg-white">
       <div className="mx-auto max-w-7xl">
-        <div className="space-y-2 text-black">
+        <div className="mx-auto max-w-4xl space-y-2 px-4 text-black sm:px-8">
           <h1 className="text-center text-3xl">Privacy Policy</h1>
-          <section className="p-10">
+          <section className="p-4 sm:p-10">
             <p className="py-2 font-semibold">Last updated: 2023-02-28</p>
             <p className="py-2">
               [otto-notes.com] ("us", "we", or "our") operates the

@@ -1,0 +1,21 @@
+# Otto Notes
+
+> Otto Notes is a bilingual Traditional Chinese and English website about living, working, studying, and immigrating to Canada. Its tools section is designed for free automotive, finance, and math calculators.
+
+Primary language: Traditional Chinese (zh-Hant-HK)
+Secondary language: English (en-US)
+
+## Main sections
+
+- Blog: https://otto-notes.com/
+- English blog: https://otto-notes.com/en
+- Tools: https://otto-notes.com/tools
+- English tools: https://otto-notes.com/en/tools
+- About: https://otto-notes.com/about
+
+## Discovery
+
+- Sitemap: https://otto-notes.com/sitemap.xml
+- Robots: https://otto-notes.com/robots.txt
+
+Article pages contain publication dates, summaries, source content, and structured FAQ data when available. Calculator pages are designed to use a dedicated URL, a plain-language explanation, and WebApplication structured data.

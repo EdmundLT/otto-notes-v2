@@ -1,86 +1,94 @@
+import { blogCategories } from "@/data/categories";
+import { tools } from "@/data/tools";
+import { absoluteUrl } from "@/lib/site";
 import { gql } from "@apollo/client";
 import { client } from "apollo-client";
+import { MetadataRoute } from "next";
 
-export default async function sitemap() {
-  const urls = [
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const staticPages: MetadataRoute.Sitemap = [
+    { url: absoluteUrl("/"), changeFrequency: "weekly", priority: 1 },
+    { url: absoluteUrl("/en"), changeFrequency: "weekly", priority: 1 },
     {
-      url: "https://otto-notes.com",
-      priority: 1,
+      url: absoluteUrl("/tools"),
+      changeFrequency: "monthly",
+      priority: 0.9,
     },
     {
-      url: "https://otto-notes.com/zh",
-      priority: 1,
+      url: absoluteUrl("/en/tools"),
+      changeFrequency: "monthly",
+      priority: 0.9,
     },
+    { url: absoluteUrl("/about"), changeFrequency: "yearly", priority: 0.5 },
+    { url: absoluteUrl("/contact"), changeFrequency: "yearly", priority: 0.4 },
     {
-      url: "https://otto-notes.com/category/生活",
-      priority: 1,
-    },
-    {
-      url: "https://otto-notes.com/en/category/Life",
-      priority: 1,
-    },
-    {
-      url: "https://otto-notes.com/category/移民",
-      priority: 1,
-    },
-    {
-      url: "https://otto-notes.com/en/category/Immigrant",
-      priority: 1,
-    },
-    {
-      url: "https://otto-notes.com/category/讀書",
-      priority: 1,
-    },
-    {
-      url: "https://otto-notes.com/en/category/Study",
-      priority: 1,
-    },
-    {
-      url: "https://otto-notes.com/category/工作",
-      priority: 1,
-    },
-    {
-      url: "https://otto-notes.com/en/category/Working",
-      priority: 1,
+      url: absoluteUrl("/privacy-policy"),
+      changeFrequency: "yearly",
+      priority: 0.3,
     },
   ];
-  let zh: any = [];
-  let en: any = [];
-  await client
-    .query({
-      query: gql`
-      query Query($locale: String, $limit: Int) {
+
+  const categoryPages: MetadataRoute.Sitemap = blogCategories.flatMap(
+    ({ zh, en }) => [
+      {
+        url: absoluteUrl(`/category/${encodeURIComponent(zh)}`),
+        changeFrequency: "weekly" as const,
+        priority: 0.7,
+      },
+      {
+        url: absoluteUrl(`/en/category/${encodeURIComponent(en)}`),
+        changeFrequency: "weekly" as const,
+        priority: 0.7,
+      },
+    ],
+  );
+
+  const response = await client.query({
+    query: gql`
+      query SitemapPosts($limit: Int) {
         blogsCollection(limit: $limit) {
           items {
-            zhSlug: slug(locale: $locale)
-            slug
+            enSlug: slug(locale: "en-US")
+            zhSlug: slug(locale: "zh-Hant-HK")
+            createdAt
           }
         }
       }
-      `,
-      variables: {
-        locale: "zh-Hant-HK",
-        limit: 100
-      },
-    })
-    .then((res) => {
-      zh = res.data.blogsCollection.items.map(
-        ({ zhSlug }: { zhSlug: string }) => {
-          return {
-            url: `https://otto-notes.com/post/${zhSlug}`,
-            priority: 1,
-          };
-        },
-      );
-      console.log(zh);
-      en = res.data.blogsCollection.items.map(({ slug }: { slug: string }) => {
-        return {
-          url: `https://otto-notes.com/en/post/${slug}`,
-          priority: 1,
-        };
-      });
-      console.log(en);
-    });
+    `,
+    variables: { limit: 100 },
+    fetchPolicy: "network-only",
+  });
 
-  return [...urls, ...zh, ...en];
+  const postPages: MetadataRoute.Sitemap =
+    response.data.blogsCollection.items.flatMap(
+      (post: { enSlug: string; zhSlug: string; createdAt: string }) => [
+        {
+          url: absoluteUrl(`/post/${encodeURIComponent(post.zhSlug)}`),
+          lastModified: new Date(post.createdAt),
+          changeFrequency: "monthly" as const,
+          priority: 0.8,
+        },
+        {
+          url: absoluteUrl(`/en/post/${encodeURIComponent(post.enSlug)}`),
+          lastModified: new Date(post.createdAt),
+          changeFrequency: "monthly" as const,
+          priority: 0.8,
+        },
+      ],
+    );
+
+  const toolPages: MetadataRoute.Sitemap = tools.flatMap((tool) => [
+    {
+      url: absoluteUrl(`/tools/${tool.slug}`),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: absoluteUrl(`/en/tools/${tool.slug}`),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+  ]);
+
+  return [...staticPages, ...categoryPages, ...postPages, ...toolPages];
 }

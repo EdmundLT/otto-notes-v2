@@ -1,5 +1,17 @@
+import { Metadata } from "next";
 import React from "react";
-import "styles/globals.css";
+
+export const metadata: Metadata = {
+  title: "關於我們",
+  description: "認識 Otto Notes，以及我們從香港移居多倫多的故事。",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "關於我們｜Otto Notes",
+    description: "認識 Otto Notes，以及我們從香港移居多倫多的故事。",
+    url: "/about",
+    locale: "zh_HK",
+  },
+};
 
 const about = () => {
   return (
@@ -8,7 +20,7 @@ const about = () => {
         <div className="px-4 py-9 2xl:container md:px-6 md:py-12 lg:px-20 lg:py-16 2xl:mx-auto">
           <div className="flex flex-col justify-between gap-8 lg:flex-row">
             <div className="flex w-full flex-col justify-center">
-              <h1 className="pb-4 text-2xl leading-9 text-gray-800 dark:text-black lg:text-3xl">
+              <h1 className="pb-4 text-3xl font-semibold leading-9 text-gray-900 lg:text-4xl">
                 關於我們
               </h1>
               <p className="text-base font-normal leading-6 text-gray-600 dark:text-black">
@@ -20,14 +32,13 @@ const about = () => {
 
           <div className="flex flex-col justify-between gap-8 pt-12 lg:flex-row">
             <div className="flex w-full flex-col justify-center gap-y-2">
-              <h1 className="pb-4 text-2xl leading-9 text-gray-800 dark:text-black lg:text-3xl">
+              <h2 className="pb-4 text-2xl font-semibold leading-9 text-gray-900 lg:text-3xl">
                 我們的故事
-              </h1>
+              </h2>
               <p className="text-base font-normal leading-6 text-gray-600 dark:text-black">
                 我們是一對香港情侶，在 2021
                 年離開香港移民到加拿大，目前在多倫多生活。
               </p>
-              
             </div>
           </div>
         </div>
