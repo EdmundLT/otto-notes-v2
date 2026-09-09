@@ -1,6 +1,7 @@
 import { toolCategoryLabels, tools } from "@/data/tools";
 import { absoluteUrl, safeJsonLd } from "@/lib/site";
 import Link from "next/link";
+import Image from "next/image";
 import Script from "next/script";
 
 type ToolsDirectoryProps = {
@@ -76,6 +77,17 @@ export default function ToolsDirectory({ locale }: ToolsDirectoryProps) {
                 href={`${isEnglish ? "/en" : ""}/tools/${tool.slug}`}
                 className="flex w-full flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1FB2A5] focus-visible:ring-offset-4"
               >
+                {tool.image && (
+                  <div className="relative mb-5 aspect-[3/2] overflow-hidden rounded-xl bg-gradient-to-br from-[#effaf8] to-[#d9f4f1]">
+                    <Image
+                      src={tool.image}
+                      alt=""
+                      fill
+                      sizes="(min-width: 640px) 33vw, 100vw"
+                      className="object-contain p-2 transition duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                )}
                 <span className="w-fit rounded-full bg-[#effaf8] px-3 py-1 text-xs font-semibold text-[#16877e]">
                   {toolCategoryLabels[tool.category][locale]}
                 </span>

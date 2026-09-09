@@ -2,12 +2,12 @@ import { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "關於我們",
-  description: "認識 Otto Notes，以及我們從香港移居多倫多的故事。",
+  title: "關於我",
+  description: "認識 Otto Notes：由 90 後工程師分享理財、投資與實用生活筆記。",
   alternates: { canonical: "/about" },
   openGraph: {
-    title: "關於我們｜Otto Notes",
-    description: "認識 Otto Notes，以及我們從香港移居多倫多的故事。",
+    title: "關於我｜Otto Notes",
+    description: "認識 Otto Notes：由 90 後工程師分享理財、投資與實用生活筆記。",
     url: "/about",
     locale: "zh_HK",
   },
@@ -21,11 +21,10 @@ const about = () => {
           <div className="flex flex-col justify-between gap-8 lg:flex-row">
             <div className="flex w-full flex-col justify-center">
               <h1 className="pb-4 text-3xl font-semibold leading-9 text-gray-900 lg:text-4xl">
-                關於我們
+                關於我
               </h1>
               <p className="text-base font-normal leading-6 text-gray-600 dark:text-black">
-                這個 Blog
-                主要記載我們在加拿大的生活、工作、唸書以及分享一些職場資訊。我們希望透過文字來紀錄這個移民的過程，讓有需要的朋友可以參考。
+                Otto Notes 是一個由 90 後工程師建立的理財筆記，分享個人理財、投資觀念、實用工具及生活中的財務決策。我希望用簡單清晰的方式整理複雜資訊，讓大家更容易掌握自己的財務狀況，作出適合自己的選擇。
               </p>
             </div>
           </div>
@@ -33,11 +32,10 @@ const about = () => {
           <div className="flex flex-col justify-between gap-8 pt-12 lg:flex-row">
             <div className="flex w-full flex-col justify-center gap-y-2">
               <h2 className="pb-4 text-2xl font-semibold leading-9 text-gray-900 lg:text-3xl">
-                我們的故事
+                為甚麼寫理財筆記？
               </h2>
               <p className="text-base font-normal leading-6 text-gray-600 dark:text-black">
-                我們是一對香港情侶，在 2021
-                年離開香港移民到加拿大，目前在多倫多生活。
+                作為 90 後工程師，我習慣以數據、邏輯和實際情境分析問題。Otto Notes 記錄我持續學習理財的過程，並把研究所得整理成容易理解的文章和計算工具，與同樣希望做好財務規劃的讀者分享。
               </p>
             </div>
           </div>

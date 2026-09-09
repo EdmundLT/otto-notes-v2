@@ -104,7 +104,7 @@ const Banner = () => {
         {isEnglish ? (
           <p className="mt-2">Life in Canada</p>
         ) : (
-          <p className="mt-2">加拿大生活大小事</p>
+          <p className="mt-2">90後理財筆記</p>
         )}
       </Link>
 
