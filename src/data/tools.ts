@@ -29,8 +29,8 @@ export const tools: ToolDefinition[] = [
       en: "Car ownership cost calculator",
     },
     description: {
-      zh: "香港養車費用計算機2026：搜尋車款及年份，自動估算牌費、油費、充電、保險、停車及保養的每月與每年開支。",
-      en: "Estimate monthly and annual car ownership costs in Hong Kong by model and year, including licence, fuel, charging, insurance, parking and maintenance.",
+      zh: "香港養車費用計算機2026：按車款、年份及油耗計算每月油費、牌費、保險、停車、保養及全年養車開支。",
+      en: "Hong Kong car ownership cost calculator: estimate monthly fuel, licence, insurance, parking, maintenance and annual running costs by model and year.",
     },
   },
 ];

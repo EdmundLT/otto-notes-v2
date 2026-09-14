@@ -25,6 +25,31 @@ export default function CarOwnershipCostContent({
           answer:
             "It uses the Transport Department's first-registered vehicle open data. Some historical, imported or uncommon variants may be absent. Always confirm the details—and an electric car's rated power—against its Hong Kong vehicle registration document.",
         },
+        {
+          question: "How do I calculate the cost of owning a car in Hong Kong?",
+          answer:
+            "Add monthly fuel or charging, insurance, parking, tolls and loan payments, then add one twelfth of annual licence, maintenance, tyre and miscellaneous costs. Depreciation should be estimated separately if you want the full economic cost.",
+        },
+        {
+          question: "How much does it cost to own a car per month?",
+          answer:
+            "There is no single figure. A useful budget includes parking, fuel or charging, insurance, licence, servicing, tyres and tolls. Enter your actual mileage and quotations above to calculate a personal monthly estimate rather than relying on an average.",
+        },
+        {
+          question: "Can I afford a car on a HK$30,000 monthly income?",
+          answer:
+            "It depends on housing, debt, savings and how often you drive. Compare the calculator's total—including loan payments—with the money left after essential expenses, while keeping an emergency fund and room for irregular repairs.",
+        },
+        {
+          question: "Is there a minimum salary required to buy a car?",
+          answer:
+            "Hong Kong has no general statutory minimum salary for buying a car with cash. Finance approval is separate: lenders assess income, credit history, existing debt and repayment ability under their own criteria.",
+        },
+        {
+          question: "How much does a car cost to run for a year?",
+          answer:
+            "Multiply recurring monthly costs by 12, then add annual licence, maintenance, tyres and other yearly bills. Add depreciation separately if you want to compare the true long-term cost of different cars.",
+        },
       ]
     : [
         {
@@ -41,6 +66,36 @@ export default function CarOwnershipCostContent({
           question: "車型搜尋資料準確嗎？",
           answer:
             "搜尋採用香港運輸署首次登記車輛開放數據；部分舊車、進口車或少見版本可能未有記錄。請按香港牌簿核對資料，電動車尤其要確認牌簿上的額定功率。",
+        },
+        {
+          question: "養車費用如何計算？",
+          answer:
+            "先加總每月油費或充電費、保險、停車、路費及車貸，再把每年牌費、維修保養、輪胎和其他費用除以 12。若要計算完整用車成本，應另外加入車輛折舊。",
+        },
+        {
+          question: "養車一個月要多少錢？",
+          answer:
+            "香港養車沒有單一標準答案，主要取決於停車場、每月里程、油耗或電耗、保險、牌費、保養、輪胎及隧道費。把實際報價和駕駛習慣輸入上方計算機，會比套用平均數更準確。",
+        },
+        {
+          question: "月入 3 萬可以養車嗎？",
+          answer:
+            "要視乎住屋、債務、儲蓄目標和用車頻率。可先用計算機得出包括車貸在內的每月總支出，再與扣除必要生活費後的可用收入比較，並預留緊急維修及保險加價的緩衝。",
+        },
+        {
+          question: "「窮人養車」應該如何控制開支？",
+          answer:
+            "所謂「窮人養車」，較實際的理解是以有限預算養車。應先比較固定停車費、保險、牌費及預計維修，再選擇可靠、油耗合理而零件供應充足的車款；同時保留緊急維修預算，不要只以低車價作決定。",
+        },
+        {
+          question: "月薪要多少才有資格買車？",
+          answer:
+            "在香港以現金買車一般沒有法定最低月薪。若申請汽車貸款，銀行或財務機構會按收入、信貸紀錄、現有債務及還款能力個別審批。",
+        },
+        {
+          question: "養車一年要花多少錢？",
+          answer:
+            "把每月油費或充電、停車、保險、路費及供款乘以 12，再加全年牌費、保養、輪胎和其他支出。如要比較不同車款的長期成本，亦應另外估算折舊。",
         },
       ];
   const faqStructuredData = {
@@ -174,6 +229,62 @@ export default function CarOwnershipCostContent({
           </p>
         </section>
 
+        <section id="monthly-car-budget">
+          <h2 className="text-2xl font-bold text-gray-950">
+            {isEnglish
+              ? "How to budget for monthly car expenses in Hong Kong"
+              : "香港每月養車費用預算教學"}
+          </h2>
+          <div className="mt-4 space-y-4 leading-7">
+            <p>
+              {isEnglish
+                ? "Start with costs that recur every month: parking, fuel or charging, insurance, tunnel and road charges, and any car-loan repayment. Then divide annual licence, servicing, tyre and miscellaneous budgets by 12. This gives a comparable monthly ownership figure even when bills are paid at different times of the year."
+                : "計算養車一個月多少錢，可先列出每月固定或經常支出，包括停車場、油費或充電費、汽車保險、隧道及道路費，以及車貸供款；再把全年牌費、維修保養、輪胎和雜費除以 12。即使不同帳單在一年內不同時間繳付，也能換算成容易比較的每月養車預算。"}
+            </p>
+            <p>
+              {isEnglish
+                ? "Purchase price and monthly loan instalments are not the same as depreciation. If you want to compare the true cost of keeping a new car with a used car, estimate the future resale value and spread the expected loss over the ownership period."
+                : "買車價、每月供款和折舊並不是同一回事。若要比較新車與二手車的真正成本，可估算日後轉售價，把預期價值損失平均分配到持有月份；計算現金流時則填入實際車貸供款。"}
+            </p>
+          </div>
+        </section>
+
+        <section id="fuel-cost-calculation">
+          <h2 className="text-2xl font-bold text-gray-950">
+            {isEnglish ? "Fuel consumption and petrol cost calculation" : "油耗計算器：每公里油費如何計算？"}
+          </h2>
+          <div className="mt-5 rounded-2xl bg-[#effaf8] p-5 sm:p-6">
+            <p className="font-semibold text-gray-950">
+              {isEnglish
+                ? "Monthly fuel cost = monthly distance × L/100 km × price per litre ÷ 100"
+                : "每月油費 = 每月公里 × 每百公里油耗 × 每公升油價 ÷ 100"}
+            </p>
+            <p className="mt-3 leading-7">
+              {isEnglish
+                ? "For example, 1,000 km a month at 7.5 L/100 km and HK$18 per litre costs about HK$1,350. For an electric car, use the same formula with kWh/100 km and the electricity price per kWh. Actual consumption changes with traffic, air conditioning, load, driving style and charging losses."
+                : "例如每月行駛 1,000 公里、平均油耗 7.5 L/100 km、油價每公升 HK$18，每月油錢約為 HK$1,350。電動車亦可用相同方法，把油耗換成 kWh/100 km，並輸入每度電價。實際能耗會受塞車、冷氣、載重、駕駛方式及充電損耗影響。"}
+            </p>
+          </div>
+        </section>
+
+        <section id="income-and-car-budget">
+          <h2 className="text-2xl font-bold text-gray-950">
+            {isEnglish ? "Can your income support a car?" : "月入 3 萬養車是否可行？"}
+          </h2>
+          <div className="mt-4 space-y-4 leading-7">
+            <p>
+              {isEnglish
+                ? "Income alone does not answer whether a car is affordable. Two people earning the same amount can have very different housing costs, family commitments, debt and savings goals. Calculate the full monthly car cash flow first, then check whether the remaining income still covers essentials, regular saving and an emergency buffer."
+                : "月入 3 萬是否可以養車，不能只看薪金一個數字。同樣收入的人，住屋開支、家庭責任、現有債務及儲蓄目標可以相差很大。較實際的做法是先計出完整每月汽車現金流，再確認餘下收入仍足以支付必要生活費、恆常儲蓄及緊急預備金。"}
+            </p>
+            <p>
+              {isEnglish
+                ? "A low-budget ownership plan should prioritise a reliable car, affordable parking and insurance, manageable fuel use and a repair reserve. Choosing an older or cheaper car can reduce purchase cost but may increase maintenance risk, so compare the total rather than the vehicle price alone."
+                : "網上常見的「窮人養車」搜尋，其實是在問有限預算下如何控制養車費。應優先考慮可靠性、可負擔的停車及保險、合理油耗，以及維修備用金。較舊或較便宜的車可以降低買入成本，但維修風險可能較高，因此不要只比較車價，亦要把牌費、保養、輪胎和折舊一併考慮。"}
+            </p>
+          </div>
+        </section>
+
         <section>
           <h2 className="text-2xl font-bold text-gray-950">
             {isEnglish ? "Frequently asked questions" : "養車費用常見問題"}
@@ -187,6 +298,40 @@ export default function CarOwnershipCostContent({
                 </summary>
                 <p className="mt-3 leading-7">{answer}</p>
               </details>
+            ))}
+          </div>
+        </section>
+
+        <section aria-labelledby="related-car-cost-topics">
+          <h2 id="related-car-cost-topics" className="text-2xl font-bold text-gray-950">
+            {isEnglish ? "Related car-cost topics" : "其他人也搜尋了以下項目"}
+          </h2>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            {(
+              isEnglish
+                ? [
+                    ["How much does a car cost per month?", "#monthly-car-budget"],
+                    ["Fuel cost calculator", "#fuel-cost-calculation"],
+                    ["Cost per kilometre", "#fuel-cost-calculation"],
+                    ["Can I afford a car on HK$30,000?", "#income-and-car-budget"],
+                  ]
+                : [
+                    ["養車一個月多少錢", "#monthly-car-budget"],
+                    ["油耗計算器", "#fuel-cost-calculation"],
+                    ["每公里油費計算", "#fuel-cost-calculation"],
+                    ["月入三萬養車", "#income-and-car-budget"],
+                    ["窮人養車", "#income-and-car-budget"],
+                    ["養車一年要花多少錢", "#monthly-car-budget"],
+                  ]
+            ).map(([label, href]) => (
+              <a
+                key={label}
+                href={href}
+                className="flex items-center justify-between rounded-2xl bg-gray-50 px-5 py-4 font-semibold text-gray-900 transition hover:bg-[#effaf8] hover:text-[#16877e]"
+              >
+                {label}
+                <span aria-hidden="true" className="text-[#16877e]">↗</span>
+              </a>
             ))}
           </div>
         </section>
